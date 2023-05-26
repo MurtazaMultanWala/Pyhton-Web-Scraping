@@ -1,2 +1,4 @@
 scraping-venv/
 */__pycache__
+.env
+.vscode/
