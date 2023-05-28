@@ -1,25 +1,13 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-from config import Config
 from constants import Constant
+from bootstrap import get_chrome_driver
 
 website_link = "https://www.htmlelements.com/demos/button/overview/"
-chr_options = Options()
-chr_options.add_experimental_option("detach", True)
-chr_options.add_argument("--ignore-certificate-errors")
-chr_options.add_experimental_option("excludeSwitches", ["enable-logging"])
-
-chrome_driver_path = Constant.LINUX_CHROME_DRIVER_PATH.value
-if Config.os_type == Constant.WINDOWS_OS.value:
-    chrome_driver_path = Constant.WINDOWS_CHROME_DRIVER_PATH.value
-
-driver = webdriver.Chrome(service=Service(chrome_driver_path), options=chr_options)
+driver = get_chrome_driver()
 driver.get(website_link)
 
 try:
@@ -29,3 +17,5 @@ try:
     portrait_button.click()
 except TimeoutException:
     print("Loading took too much time!")
+
+driver.quit()
