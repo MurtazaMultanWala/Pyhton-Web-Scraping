@@ -2,4 +2,4 @@ scraping-venv/
 */__pycache__
 .env
 .vscode/
-selenium/model/__pycache__
+selenium/models/__pycache__
